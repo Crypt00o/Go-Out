@@ -23,7 +23,7 @@ This Will Kill and Drop Connection For Everone except You
 >`sudo ./goout 192.168.1.1/24 192.168.1.1 wlan0 `
 ---
 ### Example:
-This Will Kill and Drop Connection For Everone except You
+This Will Kill and Drop Connection For 192.168.1.109 
 >`sudo ./goout 192.168.1.109 192.168.1.1 wlan0 `
 >This Will Kill and Drop Connection For 192.168.1.109
 ---
