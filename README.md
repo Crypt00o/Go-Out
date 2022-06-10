@@ -6,15 +6,15 @@ Tool For Disable Internet for other clients and Cut Connections On Your Network
 --
 This is Automative Script and Use Ettercap and Netdiscover to do it,s Job
 So Make sure You Had them Installed on your System
->`apt install ettercap-common && apt install nerdiscover`
---
+>`apt install ettercap-common && apt install netdiscover`
+---
 The Job of this Script is Scanning then List and arrange targets and prepare them to do Mitm attack with arp-spoofing  remotely then drop Connection useing compiled filter with ettercapfilter language syntax 
---
+---
 
 ## Installaion on Debian based linux (Debian-Ubuntu-Kali-Parrot)
 
 >` bash -c  "$(wget -O- https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh)" `
---
+---
 ## Tool Usage 
 >`sudo ./goout <ip-range or ip> <gateway> <interface> `
 ---
