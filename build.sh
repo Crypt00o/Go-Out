@@ -1,1 +1,2 @@
-#use etterfilter $filename.filter -o $filename.ef
+etterfilter goout.filter -o goout.ef
+chmod +x goout
