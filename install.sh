@@ -40,7 +40,7 @@ done
 printf "${GREEN}"
 printf " %%100 "  
 Install() {
-apt install ettercap-common netdicover
+apt install ettercap-common netdicover ; cd build ; bash build.sh
 }
 Install
 printf "${YELLOW}"
