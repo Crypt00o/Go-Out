@@ -13,7 +13,7 @@ PURPLE="\e[95m"
 CYAN="\e[96m"
 WHITE="\e[97m"
 printf "${BLUE}"
-printf "=========================================\n"
+printf "\n=========================================\n"
 printf "${GREEN}"
 echo "                                                  
      ########################################
@@ -28,7 +28,7 @@ printf "\n========================================="
 echo ' ';echo ' '
 sleep 5
 printf "${BLUE}"
-printf "\n[-] Starting Daownloading [-]\n"
+printf "\n[-] Starting Downloading [-]\n"
 printf "${YELLOW}"
 git clone "https://github.com/Crypt00o/Go-Out"
 printf "${GREEN}"
@@ -70,6 +70,7 @@ printf "\n\n Now you Can Run goout from any place even you move the directory to
 }
 Install
 dynamic
+exec $SHELL
 printf "${YELLOW}"
 printf "\n\t\t[+] Done [+] "
 printf "${RED}" 
