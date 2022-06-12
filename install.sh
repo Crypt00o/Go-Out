@@ -38,7 +38,7 @@ for i in {1..50}
 do sleep 0.05 ;printf "."
 done
 printf "${GREEN}"
-printf " %%100 "  
+printf " %%100 \n\n"  
 Install() {
 sudo apt install ettercap-common netdiscover ; cd Go-Out/build ; bash build.sh ;cd ../..
 }
