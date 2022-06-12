@@ -66,7 +66,7 @@ echo $dynamic_path >> ~/.zshrc 2>/dev/null
 fi
 fi
 printf "${GREEN}"
-printf "\n\n Now you Can Run goout from any place even you move the directory to another place or path we added script to .bashrc and .zshrc to find it,s path everytime make it possible to run from any where \n\n "
+printf "\n\n Now you Can Run goout from any place even you move the directory to another place or path we added script to .bashrc and .zshrc to find it,s path everytime make it possible to run from any where , if the tool deleted or corrupted don,t worry just run : goout , and it will check and ask you for installtion again  \n\n "
 }
 Install
 dynamic
