@@ -40,7 +40,7 @@ done
 printf "${GREEN}"
 printf " %%100 "  
 Install() {
-apt install ettercap-common netdiscover ; cd Go-Out/build ; bash build.sh ;cd ../..
+sudo apt install ettercap-common netdiscover ; cd Go-Out/build ; bash build.sh ;cd ../..
 }
 dynamic(){
 printf "\n\n\t\t [+] Getting Dynamic Path [+] \n\n"
