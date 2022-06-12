@@ -21,11 +21,14 @@ The Job of this Script is Scanning then List and arrange targets and prepare the
 ### Example:
 This Will Kill and Drop Connection For Everone except You
 >`sudo ./goout 192.168.1.1/24 192.168.1.1 wlan0 `
+You Can Use It from any where not just from Go-Out Directory like a:
+>`gouut 192.168.1.1/24 192.168.1.1 wlan0 `
 ---
 ### Example:
 This Will Kill and Drop Connection For 192.168.1.109 
 >`sudo ./goout 192.168.1.109 192.168.1.1 wlan0 `
->This Will Kill and Drop Connection For 192.168.1.109
+You Can Use It from any where not just from Go-Out Directory like a:
+>`gouut 192.168.1.109 192.168.1.1 wlan0 `
 ---
 if you want to Stop Droping and Killing Connections , What should you Do?
 Just run this 
