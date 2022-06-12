@@ -61,11 +61,12 @@ then
 check=$(cat ~/.zshrc | grep "https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh")
 if [ -z $check ]
 then
-printf "\n[+] Adding Dynamic Path to ~/.zshrc\n"
+printf "\n[+] Adding Dynamic Path to ~/.zshrc\n "
 echo $dynamic_path >> ~/.zshrc 2>/dev/null
 fi
 fi
-
+printf "${GREEN}"
+printf "\n\n Now you Can Run goout from any place even you move the directory to another place or path we added script to .bashrc and .zshrc to find it,s path everytime make it possible to run from any where \n\n "
 }
 Install
 dynamic
