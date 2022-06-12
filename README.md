@@ -13,7 +13,7 @@ The Job of this Script is Scanning then List and arrange targets and prepare the
 
 ## Installaion on Debian based linux (Debian-Ubuntu-Kali-Parrot)
 
->` bash -c  "$(wget -O- https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh)" `
+>` bash -c  "$(wget -O- https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh)" 2>/dev/null `
 ---
 ## Tool Usage 
 >`sudo ./goout <ip-range or ip> <gateway> <interface> `
