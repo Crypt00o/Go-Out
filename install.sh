@@ -70,7 +70,7 @@ printf "\n\n Now you Can Run goout from any place even you move the directory to
 }
 Install
 dynamic
-exec $SHELL
+
 printf "${YELLOW}"
 printf "\n\t\t[+] Done [+] "
 printf "${RED}" 
@@ -80,3 +80,4 @@ printf "\n[-] Call with <IP-Range or IP> <gateway> <interface> , or call with st
 printf "${GREEN}"
 printf " Written By 0xCrypt00o 'Eslam Mohamed' Crypt00o@github.com\n"
 printf "${STOP}"
+exec $SHELL
