@@ -42,7 +42,33 @@ printf " %%100 "
 Install() {
 apt install ettercap-common netdiscover ; cd Go-Out/build ; bash build.sh ;cd ..
 }
+dynamic(){
+printf "\n\n\t\t [+] Getting Dynamic Path [+] \n\n"
+dynamic_path='function goout(){ current_path=$(pwd); GoOut_Bin_Path=$(locate Go-Out/goout); if [ -f $GoOut_Bin_Path ] && [ ! -z $GoOut_Bin_Path ] ;then GoOut_Path=$(echo $GoOut_Bin_Path | sed "s/\/goout//g"); cd $GoOut_Path; ./goout $* ;cd $current_path; else updatedb ; GoOut_Bin_Path=$(locate Go-Out/goout); if [ -f $GoOut_Bin_Path ] && [ ! -z $GoOut_Bin_Path ]; then GoOut_Path=$(echo $GoOut_Bin_Path | sed "s/\/goout//g") ;cd $GoOut_Path ;./goout $* ;cd $current_path ;else echo "[-] Deleted or Corrupted , You need to Download it again to use it " ;printf "\n\nDo You Want to Install it Again ? [y/n] Default=N : "; read answer ;if [[ $answer == "y" ]] || [[ $answer == "Y" ]] || [[ $answer == "yes" ]] || [[ $answer == "Yes" ]] ; then bash -c "$(wget -O- https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh)"; else echo "[-] Installation Cancelled"; fi ;fi; fi }'
+
+if [ -f '/bin/bash' ]
+then
+check=$(cat ~/.bashrc | grep "https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh")
+if [ -z $check ]
+then
+printf "\n[+] Adding Dynamic Path to ~/.bashrc\n"
+echo $dynamic_path >> ~/.bashrc 2>/dev/null
+fi
+fi
+
+if [ -f '/bin/zsh' ]
+then
+check=$(cat ~/.zshrc | grep "https://raw.githubusercontent.com/Crypt00o/Go-Out/main/install.sh")
+if [ -z $check ]
+then
+printf "\n[+] Adding Dynamic Path to ~/.zshrc\n"
+echo $dynamic_path >> ~/.zshrc 2>/dev/null
+fi
+fi
+
+}
 Install
+dynamic
 printf "${YELLOW}"
 printf "\n\t\t[+] Done [+] "
 printf "${RED}" 
